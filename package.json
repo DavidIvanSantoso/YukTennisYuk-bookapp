@@ -9,10 +9,21 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@eva-design/eva": "^2.2.0",
+    "@react-navigation/native": "^7.0.13",
+    "@react-navigation/stack": "^7.0.18",
+    "@ui-kitten/components": "^5.3.1",
     "expo": "~52.0.17",
     "expo-status-bar": "~2.0.0",
     "react": "18.3.1",
-    "react-native": "0.76.3"
+    "react-native": "0.76.3",
+    "react-native-gesture-handler": "^2.21.2",
+    "react-native-reanimated": "^3.16.4",
+    "react-native-reanimated-carousel": "^3.5.1",
+    "react-native-snap-carousel": "^3.9.1",
+    "react-native-svg": "15.8.0",
+    "react-native-swiper": "^1.6.0",
+    "react-native-vector-icons": "^10.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

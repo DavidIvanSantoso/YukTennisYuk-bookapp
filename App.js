@@ -1,20 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import MainSplash from "./app/screens/MainSplash";
+import RegisterScreen from "./app/screens/RegisterScreen";
+import * as eva from "@eva-design/eva";
+import { ApplicationProvider } from "@ui-kitten/components";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import HomeScreen from "./app/screens/HomeScreen";
 
 export default function App() {
+  const Stack = createStackNavigator();
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ApplicationProvider {...eva} theme={eva.light}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="MainSplash">
+          <Stack.Screen name="MainSplash" component={MainSplash} />
+          <Stack.Screen name="Register" component={RegisterScreen} />
+          <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ApplicationProvider>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });

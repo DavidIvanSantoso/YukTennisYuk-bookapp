@@ -17,9 +17,9 @@ import {
 } from "@ui-kitten/components";
 import { useState } from "react";
 function MainSplash({ navigation }) {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
+  const [name, setName] = useState("1");
+  const [phone, setPhone] = useState("1");
+  const [password, setPassword] = useState("1");
   const handleLogin = () => {
     // Basic validation
     if (!name || !phone || !password) {

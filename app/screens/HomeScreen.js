@@ -1,89 +1,171 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView, SafeAreaView } from "react-native";
 import { ApplicationProvider, Text, Card } from "@ui-kitten/components";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import Carousel from "react-native-reanimated-carousel";
+import FooterComp from "../components/FooterComp";
 function HomeScreen(props) {
-  const carouselData = [
+  const carouselDataSession = [
     {
       header: "Fun Drill: Beginner!",
-      details: [
-        "📍Location: Lapangan Tennis UPN!",
-        "🕖 Time & Date: 19:00 - 12 December 2024",
-        "🧑‍🦲Slots: 10",
-        "💰Price: 100.000/pax",
-      ],
+      details: {
+        location: "Lapangan Tennis UPN!",
+        time: "19:00 - 12 December 2024",
+        slot: "15",
+        price: "100.000",
+      },
     },
     {
       header: "Fun Drill: Intermediate!",
-      details: [
-        "📍Location: Lapangan Tennis UPN!",
-        "🕖Time & Date: 18:00 - 15 December 2024",
-        "🧑‍🦲Slots: 8",
-        "💰Price: 150.000/pax",
-      ],
+      details: {
+        location: "Lapangan Tennis UPN!",
+        time: "19:00 - 14 December 2024",
+        slot: "11",
+        price: "150.000",
+      },
     },
     {
       header: "Fun Drill: Advanced!",
-      details: [
-        "📍Location: Lapangan Tennis UPN!",
-        "🕖Time & Date: 20:00 - 17 December 2024",
-        "🧑‍🦲Slots: 5",
-        "💰Price: 200.000/pax",
-      ],
+      details: {
+        location: "Lapangan Tennis UPN!",
+        time: "19:00 - 15 December 2024",
+        slot: "4",
+        price: "250.000",
+      },
+    },
+  ];
+  const carouselDataEvents = [
+    {
+      header: "Fun Drill: Beginner!",
+      details: {
+        location: "Lapangan Tennis UPN!",
+        time: "19:00 - 12 December 2024",
+        slot: "15",
+        price: "100.000",
+      },
+    },
+    {
+      header: "Fun Drill: Intermediate!",
+      details: {
+        location: "Lapangan Tennis UPN!",
+        time: "19:00 - 14 December 2024",
+        slot: "11",
+        price: "150.000",
+      },
+    },
+    {
+      header: "Fun Drill: Advanced!",
+      details: {
+        location: "Lapangan Tennis UPN!",
+        time: "19:00 - 15 December 2024",
+        slot: "4",
+        price: "250.000",
+      },
     },
   ];
 
   // Debugging: Check if carouselData has the expected structure
-  console.log("Carousel Data:", carouselData);
+  console.log("Carousel Data:", carouselDataSession);
 
   return (
-    <View style={styles.profileview}>
-      <View style={styles.profileContainer}>
-        <Icon name="user" color="#ffff" size={60} style={styles.profileIcon} />
-        <View style={styles.textContainer}>
-          <Text style={styles.text} category="h4">
-            Welcome Back!
-          </Text>
-          <Text style={styles.text} category="h6">
-            User
-          </Text>
-          <Text style={styles.text} category="h6">
-            +62 88888888
-          </Text>
-        </View>
-      </View>
-      <View style={styles.upcomingSession}>
-        <Text category="h4">Upcoming Sessions!</Text>
-        <View style={styles.sessioncontainer}>
-          <Carousel
-            loop
-            width={375} // Adjust width as needed
-            height={250} // Adjust height as needed
-            autoPlay={false} // Set to `true` for autoplay
-            data={carouselData}
-            scrollAnimationDuration={500} // Duration of the scroll animation
-            renderItem={({ item, index }) => (
-              <View key={index} style={styles.slide}>
-                <Card style={styles.card}>
-                  <Text style={styles.headerText}>{item.header}</Text>
-                  {item.details.map((detail, detailIndex) => (
-                    <Text key={detailIndex} style={styles.contentText}>
-                      {detail}
-                    </Text>
-                  ))}
-                </Card>
-              </View>
-            )}
+    <SafeAreaView style={styles.background}>
+      <View style={styles.profileview}>
+        <View style={styles.profileContainer}>
+          <Icon
+            name="user"
+            color="#ffff"
+            size={60}
+            style={styles.profileIcon}
           />
+          <View style={styles.textContainer}>
+            <Text style={styles.text} category="h4">
+              Welcome Back!
+            </Text>
+            <Text style={styles.text} category="h6">
+              User
+            </Text>
+            <Text style={styles.text} category="h6">
+              +62 88888888
+            </Text>
+          </View>
         </View>
+        <ScrollView style={{ flex: 1 }}>
+          <View style={styles.upcomingSession}>
+            <Text category="h4">Upcoming Sessions!</Text>
+            <View style={styles.sessioncontainer}>
+              <Carousel
+                loop
+                width={375} // Adjust width as needed
+                height={250} // Adjust height as needed
+                autoPlay={false} // Set to `true` for autoplay
+                data={carouselDataSession}
+                scrollAnimationDuration={500} // Duration of the scroll animation
+                renderItem={({ item, index }) => (
+                  <View key={index} style={styles.slide}>
+                    <Card style={styles.card}>
+                      <Text style={styles.headerText}>{item.header}</Text>
+                      <Text style={styles.contentText}>
+                        📍Location: {item.details["location"]}
+                      </Text>
+                      <Text style={styles.contentText}>
+                        🕖 Time & Date: {item.details["time"]}
+                      </Text>
+                      <Text style={styles.contentText}>
+                        🧑‍🦲Slots: {item.details["slot"]}
+                      </Text>
+                      <Text style={styles.contentText}>
+                        💰Price: {item.details["price"]}
+                      </Text>
+                    </Card>
+                  </View>
+                )}
+              />
+            </View>
+          </View>
+          <View style={styles.upcomingSession}>
+            <Text category="h4">Events!</Text>
+            <View style={styles.sessioncontainer}>
+              <Carousel
+                loop
+                width={375} // Adjust width as needed
+                height={250} // Adjust height as needed
+                autoPlay={false} // Set to `true` for autoplay
+                data={carouselDataEvents}
+                scrollAnimationDuration={500} // Duration of the scroll animation
+                renderItem={({ item, index }) => (
+                  <View key={index} style={styles.slide}>
+                    <Card style={styles.card}>
+                      <Text style={styles.headerText}>{item.header}</Text>
+                      <Text style={styles.contentText}>
+                        📍Location: {item.details["location"]}
+                      </Text>
+                      <Text style={styles.contentText}>
+                        🕖 Time & Date: {item.details["time"]}
+                      </Text>
+                      <Text style={styles.contentText}>
+                        🧑‍🦲Slots: {item.details["slot"]}
+                      </Text>
+                      <Text style={styles.contentText}>
+                        💰Price: {item.details["price"]}
+                      </Text>
+                    </Card>
+                  </View>
+                )}
+              />
+            </View>
+          </View>
+        </ScrollView>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  background: {
+    backgroundColor: "#E8ECD7",
+    flex: 1,
+  },
   profileview: {
     flex: 1,
   },

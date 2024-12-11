@@ -7,6 +7,7 @@ import { ApplicationProvider } from "@ui-kitten/components";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./app/screens/HomeScreen";
+import FooterComp from "./app/components/FooterComp";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -16,7 +17,11 @@ export default function App() {
         <Stack.Navigator initialRouteName="MainSplash">
           <Stack.Screen name="MainSplash" component={MainSplash} />
           <Stack.Screen name="Register" component={RegisterScreen} />
-          <Stack.Screen name="HomeScreen" component={HomeScreen} />
+          <Stack.Screen
+            name="HomeScreen"
+            component={FooterComp}
+            options={{ headerShown: false }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </ApplicationProvider>

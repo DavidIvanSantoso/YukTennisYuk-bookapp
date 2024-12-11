@@ -5,7 +5,16 @@ import {
   StyleSheet,
   ListRenderItemInfo,
 } from "react-native";
-import { Tab, TabBar, Text, Card, List } from "@ui-kitten/components";
+import {
+  Tab,
+  TabBar,
+  Text,
+  Card,
+  List,
+  Divider,
+  Avatar,
+  Button,
+} from "@ui-kitten/components";
 import { useState } from "react";
 
 function BookScreen(props) {
@@ -17,7 +26,7 @@ function BookScreen(props) {
       details: {
         location: "Lapangan Tennis UPN!",
         time: "19:00 - 12 December 2024",
-        slot: "15",
+        slot: 15,
         price: "100.000",
       },
     },
@@ -27,7 +36,7 @@ function BookScreen(props) {
       details: {
         location: "Lapangan Tennis UPN!",
         time: "19:00 - 14 December 2024",
-        slot: "11",
+        slot: 11,
         price: "150.000",
       },
     },
@@ -37,7 +46,7 @@ function BookScreen(props) {
       details: {
         location: "Lapangan Tennis UPN!",
         time: "19:00 - 15 December 2024",
-        slot: "4",
+        slot: 5,
         price: "250.000",
       },
     },
@@ -47,7 +56,7 @@ function BookScreen(props) {
       details: {
         location: "Lapangan Tennis UPN!",
         time: "19:00 - 15 December 2024",
-        slot: "4",
+        slot: 4,
         price: "250.000",
       },
     },
@@ -94,19 +103,41 @@ function BookScreen(props) {
           keyExtractor={(item) => item.id} // Use unique ID for each item
           renderItem={({ item }) => (
             <Card style={styles.card}>
-              <Text style={styles.headerText}>{item.header}</Text>
-              <Text style={styles.contentText}>
+              <View style={styles.cardheadercontainer}>
+                <Text style={styles.cardheader}>{item.header}</Text>
+                <Text style={styles.pilltext}>Available</Text>
+              </View>
+              <Divider style={styles.customdivider} />
+              <Text style={styles.cardbody}>
                 📍 Location: {item.details.location}
               </Text>
-              <Text style={styles.contentText}>
+              <Text style={styles.cardbody}>
                 🕖 Time & Date: {item.details.time}
               </Text>
-              <Text style={styles.contentText}>
-                🧑‍🦲 Slots: {item.details.slot}
-              </Text>
-              <Text style={styles.contentText}>
+              <Text style={styles.cardbody}>🧑‍🦲 Slots: {item.details.slot}</Text>
+              <Text style={styles.cardbody}>
                 💰 Price: {item.details.price}
               </Text>
+              <Divider style={styles.customdivider} />
+              <View style={styles.participantlistcontainer}>
+                {Array.from({ length: Math.min(item.details.slot, 5) }).map(
+                  (_, index) => (
+                    <Avatar
+                      key={index}
+                      source={require("../assets/favicon.png")}
+                      style={styles.avatar}
+                    />
+                  )
+                )}
+                {item.details.slot > 6 && (
+                  <Text style={styles.avatarnumber}>
+                    + {item.details.slot - 5}
+                  </Text>
+                )}
+              </View>
+              <View style={{}}>
+                <Button style={{ margin: 15 }}>Book Now!</Button>
+              </View>
             </Card>
           )}
         />
@@ -149,6 +180,7 @@ const styles = StyleSheet.create({
   },
   tabTitle: {
     color: "#E8ECD7",
+    fontSize: 20,
   },
   selectedTabTitle: {
     color: "#47663B",
@@ -171,6 +203,42 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.5,
     elevation: 5, // For Android shadow effect
+  },
+  cardheader: {
+    fontWeight: "bold",
+    fontSize: 15,
+  },
+  cardheadercontainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  pilltext: {
+    paddingHorizontal: 15, // Add horizontal padding for the pill shape
+    paddingVertical: 8, // Add vertical padding
+    borderRadius: 20, // Make the border fully rounded
+    backgroundColor: "#d1e7dd", // Background color for the pill
+    color: "#000", // Text color
+    fontSize: 12, // Adjust font size
+    borderWidth: 1, // Optional: Add a border
+    borderColor: "#a3d2b3", // Optional: Border color
+    textAlign: "center", // Center-align the text
+    flexShrink: 1,
+  },
+  customdivider: {
+    height: 1,
+    backgroundColor: "black",
+    marginVertical: 10,
+  },
+  participantlistcontainer: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  avatarnumber: {
+    marginLeft: 10,
+    fontWeight: "bold",
   },
 });
 export default BookScreen;

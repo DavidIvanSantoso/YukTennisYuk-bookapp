@@ -17,7 +17,10 @@ import {
 } from "@ui-kitten/components";
 import { useState } from "react";
 
-function BookScreen(props) {
+function BookScreen({ navigation }) {
+  const navBookDetail = () => {
+    navigation.navigate("ConfirmBooking");
+  };
   const [filter, setFilter] = useState(0);
   const listdata = [
     {
@@ -136,7 +139,9 @@ function BookScreen(props) {
                 )}
               </View>
               <View style={{}}>
-                <Button style={{ margin: 15 }}>Book Now!</Button>
+                <Button onPress={navBookDetail} style={{ margin: 15 }}>
+                  Book Now!
+                </Button>
               </View>
             </Card>
           )}

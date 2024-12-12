@@ -8,6 +8,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./app/screens/HomeScreen";
 import FooterComp from "./app/components/FooterComp";
+import BookDetail from "./app/screens/BookDetail";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -22,6 +23,7 @@ export default function App() {
             component={FooterComp}
             options={{ headerShown: false }}
           />
+          <Stack.Screen name="ConfirmBooking" component={BookDetail} />
         </Stack.Navigator>
       </NavigationContainer>
     </ApplicationProvider>

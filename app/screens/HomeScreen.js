@@ -1,5 +1,11 @@
 import React from "react";
-import { View, StyleSheet, ScrollView, SafeAreaView } from "react-native";
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
 import { ApplicationProvider, Text, Card } from "@ui-kitten/components";
 import Icon from "react-native-vector-icons/FontAwesome";
 
@@ -156,6 +162,14 @@ function HomeScreen(props) {
             </View>
           </View>
         </ScrollView>
+        <TouchableOpacity style={styles.floatingcontact}>
+          <Icon
+            name="whatsapp"
+            color="#ffff"
+            size={27}
+            style={styles.profileIcon}
+          />
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -188,7 +202,7 @@ const styles = StyleSheet.create({
     color: "white",
   },
   upcomingSession: {
-    padding: 10,
+    padding: 15,
   },
   sessioncontainer: {
     height: 250, // Add height to make sure the swiper has a defined space
@@ -222,6 +236,17 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: "left",
     marginBottom: 5,
+  },
+  floatingcontact: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: 65,
+    position: "absolute",
+    right: 20,
+    height: 65,
+    bottom: 40,
+    backgroundColor: "#47663B",
+    borderRadius: 100,
   },
 });
 

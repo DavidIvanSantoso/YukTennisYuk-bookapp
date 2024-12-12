@@ -1,17 +1,11 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import {
-  Text,
-  BottomNavigation,
-  BottomNavigationProps,
-  BottomNavigationTab,
-  Icon,
-  IconElement,
-} from "@ui-kitten/components";
 import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
 import BookScreen from "../screens/BookScreen";
+import Profile from "../screens/SettingScreen";
+import SettingScreen from "../screens/SettingScreen";
 const Tab = createBottomTabNavigator();
 
 function FooterComp(props) {
@@ -29,16 +23,48 @@ function FooterComp(props) {
             iconName = focused ? "settings" : "settings-outline";
           }
 
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return (
+            <View
+              style={[
+                styles.iconcontainer,
+                focused && styles.activeIconContainer,
+              ]}
+            >
+              <Ionicons name={iconName} size={25} color={color} />
+            </View>
+          );
         },
-        tabBarActiveTintColor: "#47663B",
-        tabBarInactiveTintColor: "gray",
+        tabBarActiveTintColor: "#e8ecd7",
+        tabBarInactiveTintColor: "white",
+        tabBarStyle: styles.tabbar,
+        tabBarItemStyle: styles.tabbaritem,
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Book" component={BookScreen} />
+      <Tab.Screen name="History" component={BookScreen} />
+      <Tab.Screen name="Settings" component={SettingScreen} />
     </Tab.Navigator>
   );
 }
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  tabbar: {
+    backgroundColor: "#1f4529",
+    height: 60,
+    borderRadius: 30,
+    marginHorizontal: 30,
+    marginBottom: 10,
+    position: "absolute",
+    elevation: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.2,
+    shadowRadius: 10,
+  },
+  tabbaritem: {
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 5,
+  },
+});
 export default FooterComp;

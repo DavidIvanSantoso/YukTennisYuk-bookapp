@@ -223,8 +223,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15, // Add horizontal padding for the pill shape
     paddingVertical: 8, // Add vertical padding
     borderRadius: 20, // Make the border fully rounded
-    backgroundColor: "#d1e7dd", // Background color for the pill
-    color: "#000", // Text color
+    backgroundColor: "#1f4529", // Background color for the pill
+    color: "#e8ecd7", // Text color
     fontSize: 12, // Adjust font size
     borderWidth: 1, // Optional: Add a border
     borderColor: "#a3d2b3", // Optional: Border color

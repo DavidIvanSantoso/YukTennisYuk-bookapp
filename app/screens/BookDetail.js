@@ -67,7 +67,7 @@ function BookDetail(props) {
           </Text>
         </View>
         <View style={styles.desccontainer}>
-          <Text style={styles.descheader}>Book Slot:</Text>
+          <Text style={styles.descheader}>Book Slot</Text>
           <Text style={styles.desctext}>Number of People:</Text>
           <Select
             selectedIndex={numPeople}
@@ -78,11 +78,17 @@ function BookDetail(props) {
             <SelectItem title="2" />
             <SelectItem title="3" />
           </Select>
+          <Text style={[styles.descheader, { marginTop: 10 }]}>
+            Total Price: 1500000
+          </Text>
           <Button
             style={{
               marginVertical: 20,
               backgroundColor: "#47663b",
               borderColor: "white",
+            }}
+            onPress={() => {
+              console.log("HAI");
             }}
           >
             Confirm

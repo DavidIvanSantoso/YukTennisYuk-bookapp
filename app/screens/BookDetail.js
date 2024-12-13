@@ -6,11 +6,24 @@ import {
   SelectItem,
   IndexPath,
   Button,
+  Tooltip,
+  Modal,
+  Card,
 } from "@ui-kitten/components";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView, Pressable } from "react-native";
 
 function BookDetail(props) {
   const [numPeople, setNumPeople] = useState(new IndexPath(0));
+  //tooltip settings
+  const [visible, setVisible] = useState(false);
+  const renderAnchor = () => (
+    <Pressable
+      onPressIn={() => setVisible(true)} // Show tooltip on hold
+      onPressOut={() => setVisible(false)}
+    >
+      <Avatar source={require("../assets/favicon.png")} style={styles.avatar} />
+    </Pressable>
+  );
   const selectedValue = numPeople.row + 1;
   return (
     <View style={styles.background}>
@@ -49,18 +62,14 @@ function BookDetail(props) {
         <View style={styles.desccontainer}>
           <Text style={styles.descheader}>Participants</Text>
           <View style={styles.pillcontainer}>
-            <Avatar
-              source={require("../assets/favicon.png")}
-              style={styles.avatar}
-            />
-            <Avatar
-              source={require("../assets/favicon.png")}
-              style={styles.avatar}
-            />
-            <Avatar
-              source={require("../assets/favicon.png")}
-              style={styles.avatar}
-            />
+            <Tooltip
+              anchor={renderAnchor}
+              visible={visible}
+              onBackdropPress={() => setVisible(false)} // Ensure tooltip hides on outside touch
+              style={styles.tooltip}
+            >
+              <Text>Username</Text>
+            </Tooltip>
           </View>
           <Text style={[styles.desctext, { marginTop: 10 }]}>
             Slots available: 5

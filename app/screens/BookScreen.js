@@ -139,7 +139,14 @@ function BookScreen({ navigation }) {
                 )}
               </View>
               <View style={{}}>
-                <Button onPress={navBookDetail} style={{ margin: 15 }}>
+                <Button
+                  onPress={navBookDetail}
+                  style={{
+                    margin: 15,
+                    backgroundColor: "#47663B",
+                    borderColor: "#47663B",
+                  }}
+                >
                   Book Now!
                 </Button>
               </View>

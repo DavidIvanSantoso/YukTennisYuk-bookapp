@@ -9,9 +9,8 @@ import {
   Input,
   Divider,
 } from "@ui-kitten/components";
-import Collapsible from "react-native-collapsible";
 
-function SettingScreen(props) {
+function SettingScreen() {
   //modal account info
   const [visibleModalAccount, setVisibleModalAccount] = useState(false);
   //modal Terms & Condition info
@@ -39,7 +38,12 @@ function SettingScreen(props) {
           >
             Change Account Information
           </Button>
-          <Button style={[styles.button]}>Terms & Condition</Button>
+          <Button
+            style={[styles.button]}
+            onPress={() => setVisibleTermsCondition(true)}
+          >
+            Terms & Condition
+          </Button>
           <Button
             style={[
               styles.button,
@@ -79,6 +83,31 @@ function SettingScreen(props) {
               </View>
               <Button onPress={() => setVisibleModalAccount(false)}>
                 Confirm Changes
+              </Button>
+            </Card>
+          </Modal>
+        </View>
+
+        {/* MODAL TERMS & CONDITION INFO */}
+        <View style={styles.modal}>
+          <Modal
+            visible={visibleTermsCondition}
+            backdropStyle={styles.backdrop}
+            onBackdropPress={() => setVisibleTermsCondition(false)}
+          >
+            <Card disabled={true}>
+              <Text style={styles.modalheadertext}>Terms & Condition</Text>
+              <Divider style={styles.divider}></Divider>
+              <Text>
+                1. Booking can't be cancelled after payment! {"\n"}
+                2. If something happened and the session have to be canceled by
+                the coaches, it will be refunded{"\n"}
+                3. If you have some questions about the tennis sessions, you can
+                contact 08111111 {"\n"}
+              </Text>
+
+              <Button onPress={() => setVisibleTermsCondition(false)}>
+                Close
               </Button>
             </Card>
           </Modal>

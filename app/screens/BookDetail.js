@@ -12,7 +12,7 @@ import {
 } from "@ui-kitten/components";
 import { View, StyleSheet, ScrollView, Pressable } from "react-native";
 
-function BookDetail(props) {
+function BookDetail() {
   const [numPeople, setNumPeople] = useState(new IndexPath(0));
   //tooltip settings
   const [visible, setVisible] = useState(false);

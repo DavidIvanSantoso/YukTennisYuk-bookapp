@@ -4,8 +4,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
 import BookScreen from "../screens/BookScreen";
-import Profile from "../screens/SettingScreen";
 import SettingScreen from "../screens/SettingScreen";
+import HistoryScreen from "../screens/HistoryScreen";
 const Tab = createBottomTabNavigator();
 
 function FooterComp(props) {
@@ -21,6 +21,8 @@ function FooterComp(props) {
             iconName = focused ? "tennisball" : "tennisball-outline";
           } else if (route.name === "Settings") {
             iconName = focused ? "settings" : "settings-outline";
+          } else if (route.name === "History") {
+            iconName = focused ? "briefcase" : "briefcase-outline";
           }
 
           return (
@@ -42,7 +44,7 @@ function FooterComp(props) {
     >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Book" component={BookScreen} />
-      <Tab.Screen name="History" component={BookScreen} />
+      <Tab.Screen name="History" component={HistoryScreen} />
       <Tab.Screen name="Settings" component={SettingScreen} />
     </Tab.Navigator>
   );

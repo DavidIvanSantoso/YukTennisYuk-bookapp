@@ -162,14 +162,14 @@ function HomeScreen(props) {
             </View>
           </View>
         </ScrollView>
-        <TouchableOpacity style={styles.floatingcontact}>
+        {/* <TouchableOpacity style={styles.floatingcontact}>
           <Icon
             name="whatsapp"
             color="#ffff"
             size={27}
             style={styles.profileIcon}
           />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </SafeAreaView>
   );

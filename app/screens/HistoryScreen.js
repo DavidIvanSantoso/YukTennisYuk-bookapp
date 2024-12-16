@@ -20,17 +20,17 @@ import {
 import BookTabBar from "../components/BookTabBar";
 import { useState } from "react";
 
-function BookScreen({ navigation }) {
+function HistoryScreen({ navigation }) {
   const navBookDetail = () => {
     navigation.navigate("ConfirmBooking");
   };
   const [filter, setFilter] = useState(0);
   const tabs = [
     {
-      title: "Fun Game",
+      title: "On Going!",
     },
     {
-      title: "Fun Drill",
+      title: "Completed!",
     },
   ];
   const listdata = [
@@ -79,7 +79,7 @@ function BookScreen({ navigation }) {
     <SafeAreaView style={styles.background}>
       <View style={styles.titlecontainer}>
         <Text category="h4" style={styles.text}>
-          Choose Sessions!
+          Book History!
         </Text>
       </View>
       <View style={styles.filtercontainer}>
@@ -94,7 +94,7 @@ function BookScreen({ navigation }) {
             <Card style={styles.card}>
               <View style={styles.cardheadercontainer}>
                 <Text style={styles.cardheader}>{item.header}</Text>
-                <Text style={styles.pilltext}>Available</Text>
+                <Text style={styles.pilltext}>On Going!</Text>
               </View>
               <Divider style={styles.customdivider} />
               <Text style={styles.cardbody}>
@@ -103,9 +103,11 @@ function BookScreen({ navigation }) {
               <Text style={styles.cardbody}>
                 🕖 Time & Date: {item.details.time}
               </Text>
-              <Text style={styles.cardbody}>🧑‍🦲 Slots: {item.details.slot}</Text>
               <Text style={styles.cardbody}>
-                💰 Price: {item.details.price}
+                🧑‍🦲 Booking Slots: {item.details.slot}
+              </Text>
+              <Text style={styles.cardbody}>
+                💰 Total Price: {item.details.price}
               </Text>
               <Divider style={styles.customdivider} />
               <View style={styles.participantlistcontainer}>
@@ -123,18 +125,6 @@ function BookScreen({ navigation }) {
                     + {item.details.slot - 5}
                   </Text>
                 )}
-              </View>
-              <View style={{}}>
-                <Button
-                  onPress={navBookDetail}
-                  style={{
-                    margin: 15,
-                    backgroundColor: "#47663B",
-                    borderColor: "#47663B",
-                  }}
-                >
-                  Book Now!
-                </Button>
               </View>
             </Card>
           )}
@@ -243,4 +233,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
-export default BookScreen;
+export default HistoryScreen;

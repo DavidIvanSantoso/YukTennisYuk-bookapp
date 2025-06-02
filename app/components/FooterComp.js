@@ -42,7 +42,11 @@ function FooterComp(props) {
         tabBarItemStyle: styles.tabbaritem,
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ headerShown: false }}
+      />
       <Tab.Screen name="Book" component={BookScreen} />
       <Tab.Screen name="History" component={HistoryScreen} />
       <Tab.Screen name="Settings" component={SettingScreen} />

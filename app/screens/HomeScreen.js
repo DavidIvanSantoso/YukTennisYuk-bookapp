@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { ApplicationProvider, Text, Card } from "@ui-kitten/components";
 import Icon from "react-native-vector-icons/FontAwesome";
-
+import { useState, useEffect } from "react";
 import Carousel from "react-native-reanimated-carousel";
 import FooterComp from "../components/FooterComp";
 function HomeScreen(props) {
@@ -70,7 +70,8 @@ function HomeScreen(props) {
       },
     },
   ];
-
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndexEvent, setCurrentIndexEvent] = useState(0);
   // Debugging: Check if carouselData has the expected structure
   console.log("Carousel Data:", carouselDataSession);
 
@@ -102,11 +103,12 @@ function HomeScreen(props) {
             <View style={styles.sessioncontainer}>
               <Carousel
                 loop
-                width={375} // Adjust width as needed
-                height={250} // Adjust height as needed
-                autoPlay={false} // Set to `true` for autoplay
+                width={375}
+                height={250}
+                autoPlay={false}
                 data={carouselDataSession}
-                scrollAnimationDuration={500} // Duration of the scroll animation
+                scrollAnimationDuration={500}
+                onSnapToItem={(index) => setCurrentIndex(index)} // update index aktif
                 renderItem={({ item, index }) => (
                   <View key={index} style={styles.slide}>
                     <Card style={styles.card}>
@@ -127,6 +129,17 @@ function HomeScreen(props) {
                   </View>
                 )}
               />
+              <View style={styles.dotContainer}>
+                {carouselDataSession.map((_, index) => (
+                  <View
+                    key={index}
+                    style={[
+                      styles.dot,
+                      currentIndex === index && styles.activeDot,
+                    ]}
+                  />
+                ))}
+              </View>
             </View>
           </View>
           <View style={styles.upcomingSession}>
@@ -138,6 +151,7 @@ function HomeScreen(props) {
                 height={250} // Adjust height as needed
                 autoPlay={false} // Set to `true` for autoplay
                 data={carouselDataEvents}
+                onSnapToItem={(index) => setCurrentIndexEvent(index)} // update index aktif
                 scrollAnimationDuration={500} // Duration of the scroll animation
                 renderItem={({ item, index }) => (
                   <View key={index} style={styles.slide}>
@@ -159,6 +173,17 @@ function HomeScreen(props) {
                   </View>
                 )}
               />
+              <View style={styles.dotContainer}>
+                {carouselDataEvents.map((_, index) => (
+                  <View
+                    key={index}
+                    style={[
+                      styles.dot,
+                      currentIndexEvent === index && styles.activeDot,
+                    ]}
+                  />
+                ))}
+              </View>
             </View>
           </View>
         </ScrollView>
@@ -247,6 +272,27 @@ const styles = StyleSheet.create({
     bottom: 40,
     backgroundColor: "#47663B",
     borderRadius: 100,
+  },
+
+  dotContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 12,
+  },
+
+  dot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: "#ccc",
+    marginHorizontal: 4,
+  },
+
+  activeDot: {
+    backgroundColor: "#47663B", // ganti sesuai warna tema kamu
+    width: 10,
+    height: 10,
   },
 });
 

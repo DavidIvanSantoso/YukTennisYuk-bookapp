@@ -15,9 +15,14 @@ import {
   Button,
   Text,
 } from "@ui-kitten/components";
-import { useState } from "react";
+import Icon from "react-native-vector-icons/Ionicons";
 
-function RegisterScreen(props) {
+import { useState } from "react";
+import Colors from "../components/Color";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { LinearGradient } from "expo-linear-gradient";
+
+function RegisterScreen({ navigation }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
@@ -43,60 +48,106 @@ function RegisterScreen(props) {
   };
 
   return (
-    <ImageBackground
-      source={require("../assets/wallpaper.jpg")}
-      style={styles.background}
-    >
+    <SafeAreaView style={styles.background}>
       <Layout style={styles.layoutContainer}>
-        <Image
-          source={require("../assets/tennislogo.png")}
-          style={{ width: 150, height: 150, alignSelf: "center" }}
-        ></Image>
-        <Text
-          category="h3"
-          style={{ textAlign: "center", marginBottom: 20, color: "black" }}
-        >
-          YUK TENNIS YUK!
-        </Text>
-        <Text category="h5" style={styles.title}>
-          Register
-        </Text>
+        <LinearGradient colors={["#47663B", "#85A947"]} style={{ flex: 1 }}>
+          <View
+            style={{
+              padding: 20,
+              backgroundColor: "white",
+              borderRadius: 10,
+              marginTop: 64,
+              flexGrow: 1,
+            }}
+          >
+            <View classname="container-header">
+              <View style={{ alignItems: "center", flexDirection: "row" }}>
+                <TouchableOpacity
+                  onPress={() => navigation.goBack()}
+                  style={{ marginLeft: 20, marginRight: 24 }}
+                >
+                  <Icon name="arrow-back" size={24} color="black" />
+                </TouchableOpacity>
 
-        <Input
-          style={styles.input}
-          placeholder="Name"
-          value={name}
-          onChangeText={setName}
-        />
+                <Text
+                  category="h4"
+                  style={{
+                    fontweight: "bold",
+                    color: Colors.darkgreen,
+                    marginBottom: 8,
+                    textAlign: "center",
+                  }}
+                >
+                  Create an account!
+                </Text>
+              </View>
+              <Text
+                category="h7"
+                style={{
+                  fontweight: "bold",
+                  color: Colors.darkgreen,
 
-        <Input
-          style={styles.input}
-          placeholder="Phone"
-          keyboardType="phone-pad"
-          value={phone}
-          onChangeText={setPhone}
-        />
+                  textAlign: "center",
+                }}
+              >
+                Let's be part of our tennis community!
+              </Text>
+            </View>
+            <View classname="container-form" style={{ marginTop: 48 }}>
+              <Input
+                style={styles.input}
+                placeholder="Username"
+                value={name}
+                captionStyle={{ color: "black" }}
+                labelStyle={{ color: "black" }}
+                label={"Username"}
+                keyboardType="default"
+                caption={"Enter your username"}
+                onChangeText={setName}
+              />
 
-        <Input
-          style={styles.input}
-          placeholder="Password"
-          secureTextEntry
-          value={password}
-          onChangeText={setPassword}
-        />
-        <Input
-          style={styles.input}
-          placeholder="Confirm Password"
-          secureTextEntry
-          value={confirmpassword}
-          onChangeText={setConfirmPassword}
-        />
+              <Input
+                style={styles.input}
+                placeholder="Phone Number"
+                value={phone}
+                captionStyle={{ color: "black" }}
+                labelStyle={{ color: "black" }}
+                label={"Number"}
+                keyboardType="number-pad"
+                caption={"Enter your phone number"}
+                onChangeText={setPhone}
+              />
 
-        <Button style={styles.button} onPress={handleRegister}>
-          Confirm
-        </Button>
+              <Input
+                style={styles.input}
+                placeholder="Password"
+                value={password}
+                captionStyle={{ color: "black" }}
+                labelStyle={{ color: "black" }}
+                label={"Password"}
+                keyboardType="default"
+                caption={"Enter your password"}
+                onChangeText={setPassword}
+              />
+              <Input
+                style={styles.input}
+                placeholder="Confirm Password"
+                value={confirmpassword}
+                captionStyle={{ color: "black" }}
+                labelStyle={{ color: "black" }}
+                label={"Confirm Password"}
+                keyboardType="default"
+                caption={"Enter your confirmation password"}
+                onChangeText={setConfirmPassword}
+              />
+              <Button style={styles.button} onPress={handleRegister}>
+                Confirm
+              </Button>
+            </View>
+          </View>
+        </LinearGradient>
       </Layout>
-    </ImageBackground>
+    </SafeAreaView>
   );
 }
 const styles = StyleSheet.create({
@@ -109,9 +160,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignContent: "center",
     justifyContent: "center",
-    padding: 20,
-    backgroundColor: "rgba(255, 255, 255, 0.3)", // Optional: to make the form stand out with a semi-transparent background
-    borderRadius: 10, // Optional: add some border radius for aesthetics
+    flexGrow: 1,
   },
   title: {
     textAlign: "left",
@@ -123,6 +172,8 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 10,
+    backgroundColor: Colors.darkgreen,
+    borderColor: Colors.darkgreen,
   },
 });
 export default RegisterScreen;

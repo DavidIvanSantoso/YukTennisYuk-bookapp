@@ -10,7 +10,7 @@ import {
   Divider,
 } from "@ui-kitten/components";
 
-function SettingScreen() {
+function SettingScreen({ navigation }) {
   //modal account info
   const [visibleModalAccount, setVisibleModalAccount] = useState(false);
   //modal Terms & Condition info
@@ -45,6 +45,9 @@ function SettingScreen() {
             Terms & Condition
           </Button>
           <Button
+            onPress={() => {
+              navigation.navigate("MainSplash");
+            }}
             style={[
               styles.button,
               { backgroundColor: "#b23b3b", borderColor: "#b23b3b" },

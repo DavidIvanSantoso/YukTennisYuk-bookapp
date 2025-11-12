@@ -10,10 +10,21 @@ import {
   Modal,
   Card,
 } from "@ui-kitten/components";
-import { View, StyleSheet, ScrollView, Pressable } from "react-native";
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  Pressable,
+  TouchableOpacity,
+} from "react-native";
 
 function BookDetail() {
-  const [numPeople, setNumPeople] = useState(new IndexPath(0));
+  const [numPeople, setNumPeople] = useState("1");
+  const options = ["1", "2", "3"];
+  const [numPeopleIndex, setNumPeopleIndex] = useState(new IndexPath(0));
+  const openGoogleMaps = (url) => {
+    Linking.openURL(url);
+  };
   //tooltip settings
   const [visible, setVisible] = useState(false);
   const renderAnchor = () => (
@@ -41,7 +52,16 @@ function BookDetail() {
         <View style={styles.desccontainer}>
           <Text style={styles.descheader}>Location</Text>
           <Text style={styles.desctext}>Location: Lapangan Tennis UPN</Text>
-          <Text style={styles.desctext}>Open in Google: html</Text>
+          <TouchableOpacity>
+            <Text
+              style={[
+                styles.desctext,
+                { color: "#47663b", textDecorationLine: "underline" },
+              ]}
+            >
+              Open in Google: {"Lapangan Tennis UPN"}
+            </Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.desccontainer}>
           <Text style={styles.descheader}>Facilities</Text>
@@ -79,14 +99,17 @@ function BookDetail() {
           <Text style={styles.descheader}>Book Slot</Text>
           <Text style={styles.desctext}>Number of People:</Text>
           <Select
-            selectedIndex={numPeople}
-            value={`${selectedValue}`}
-            onSelect={(index) => setNumPeople(index)}
+            selectedIndex={numPeopleIndex}
+            value={options[numPeopleIndex.row]}
+            onSelect={(index) => {
+              setNumPeopleIndex(index);
+            }}
           >
-            <SelectItem title="1" />
-            <SelectItem title="2" />
-            <SelectItem title="3" />
+            {options.map((item, i) => (
+              <SelectItem key={i} title={item} />
+            ))}
           </Select>
+          <Text>{numPeople}</Text>
           <Text style={[styles.descheader, { marginTop: 10 }]}>
             Total Price: 1500000
           </Text>
@@ -138,6 +161,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15, // Add horizontal padding for the pill shape
     paddingVertical: 8, // Add vertical padding
     borderRadius: 20, // Make the border fully rounded
+    borderColor: "#47663b",
     backgroundColor: "#47663b", // Background color for the pill
     color: "#e8ecd7", // Text color
     fontSize: 12, // Adjust font size

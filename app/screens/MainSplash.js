@@ -27,11 +27,11 @@ import { useState } from "react";
 
 function MainSplash({ navigation }) {
   const [name, setName] = useState("1");
-  const [phone, setPhone] = useState("1");
+
   const [password, setPassword] = useState("1");
   const handleLogin = () => {
     // Basic validation
-    if (!name || !phone || !password) {
+    if (!name || !password) {
       Alert.alert("Error", "All fields are required!");
       return;
     } else {
@@ -42,7 +42,7 @@ function MainSplash({ navigation }) {
       );
       // Reset fields (optional)
       setName("");
-      setPhone("");
+
       setPassword("");
       navigation.navigate("HomeScreen");
     }
